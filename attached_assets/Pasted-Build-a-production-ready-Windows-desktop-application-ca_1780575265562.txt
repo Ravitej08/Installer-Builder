@@ -1,0 +1,402 @@
+Build a production-ready Windows desktop application called “Windows Action Assistant”.
+
+MISSION
+
+Create a lightweight Windows assistant that helps users perform actions, solve PC problems, launch projects, open applications, navigate Windows settings, and access information using natural language.
+
+The application is NOT a chatbot and NOT a general AI assistant.
+
+The application’s purpose is to translate user goals and problems into Windows actions.
+
+Examples:
+
+* “My screen is too bright”
+* “Turn on hotspot”
+* “Open startup apps”
+* “Install Chrome”
+* “Open my Outlook agent project”
+* “I can’t hear anything”
+
+CORE PRINCIPLE
+
+Users should never need to know Windows terminology.
+
+Users describe what they want.
+
+The assistant finds the correct Windows action.
+
+ARCHITECTURE
+
+User Input
+→ Intent Engine
+→ Knowledge Base
+→ Action Engine
+→ Windows Action
+
+Fallback:
+
+→ Preferred Browser Search
+OR
+→ Preferred LLM
+
+TECHNICAL REQUIREMENTS
+
+* Native Windows application
+* Local-first architecture
+* No cloud dependency
+* No account system
+* No subscription system
+* No external AI required
+* Rule-based intent matching
+* Fuzzy matching
+* JSON-based database
+* Modular architecture
+* Production folder structure
+* Easy future expansion
+
+UI DESIGN
+
+Main Interface:
+
+* Floating desktop search widget
+* Similar to Android Google Search widget
+* Top-center by default
+* Draggable anywhere on screen
+* Always accessible
+* Minimal design
+* Voice microphone button
+
+Conversation Behavior:
+
+* Single-line search bar when idle
+* Expands vertically when interaction occurs
+* Never expands horizontally
+* Compact and unobtrusive
+* Not a chat application
+
+Themes:
+
+Theme 1:
+Terminal Mode
+
+* Black background
+* Green text
+* Classic CMD style
+
+Theme 2:
+Modern Mode
+
+* Clean
+* Rounded corners
+* Futuristic design
+
+VOICE SYSTEM
+
+Voice Input
+→ Speech-to-Text
+→ Intent Matching
+→ Action Execution
+
+FIRST-TIME SETUP
+
+Ask user once:
+
+* Preferred browser
+* Preferred search engine
+* Preferred LLM
+* Preferred code editor
+* Preferred project folders
+* Theme preference
+* Voice enabled/disabled
+* Widget position
+* Auto-action preferences
+
+Store all preferences locally.
+
+SETTINGS PAGE
+
+Sections:
+
+* Personalization
+* Theme
+* Voice
+* Indexed Folders
+* Browser Preference
+* Search Engine Preference
+* Preferred LLM
+* Preferred Editor
+* Privacy
+
+PERSONALIZATION PAGE
+
+Use Microsoft Forms-style options.
+
+MCQ-style buttons.
+
+Store:
+
+* Favorite browser
+* Favorite LLM
+* Favorite code editor
+* Preferred workflow choices
+
+Allow user to modify later.
+
+PRIVACY PAGE
+
+Show:
+
+* Indexed folders
+* Stored preferences
+* Metadata stored
+
+Buttons:
+
+* Clear Data
+* Rebuild Index
+
+LOCAL DATA COLLECTION
+
+During first installation:
+
+Scan:
+
+* Installed applications
+* Desktop
+* Documents
+* Downloads
+* User-selected folders
+* Development projects
+* Git repositories
+
+Store metadata only.
+
+Do NOT store file contents.
+
+Store:
+
+* File names
+* Folder names
+* Application names
+* Paths
+* Project locations
+
+STARTUP REFRESH
+
+Whenever Windows starts:
+
+Perform lightweight refresh.
+
+Update:
+
+* New applications
+* New folders
+* New projects
+
+Avoid full disk scanning.
+
+DATA STORAGE
+
+Store all data locally.
+
+Use JSON files.
+
+Folder Structure:
+
+data/
+├── intents/
+├── settings/
+├── index/
+├── projects/
+├── cache/
+├── logs/
+
+INTENT DATABASE FORMAT
+
+Example:
+
+{
+“intent”: “bluetooth_settings”,
+“keywords”: [
+“bluetooth”,
+“pair device”,
+“connect headphones”
+],
+“aliases”: [
+“bluetooth issue”
+],
+“description”: “Open Bluetooth Settings”,
+“actions”: [
+“ms-settings:bluetooth”
+],
+“fallback”: “browser”
+}
+
+DATASET SOURCES
+
+Build database using:
+
+* Official Microsoft Settings URI documentation
+* Official Microsoft Windows documentation
+* Official Winget repository
+* Windows Control Panel commands
+* Windows CMD commands
+* Windows PowerShell commands
+* Windows built-in tools
+* Windows troubleshooting resources
+
+Create structured JSON datasets from these sources.
+
+CORE FEATURES
+
+Open:
+
+* Applications
+* Folders
+* Windows Settings
+* Control Panel pages
+* Device Manager
+* Services
+* Task Scheduler
+* Task Manager
+
+SAFE AUTO ACTIONS
+
+Execute immediately:
+
+* Increase volume
+* Decrease volume
+* Mute
+* Unmute
+* Increase brightness
+* Decrease brightness
+* Enable Wi-Fi
+* Disable Wi-Fi
+* Enable Bluetooth
+* Disable Bluetooth
+* Enable Hotspot
+* Disable Hotspot
+
+OPTION-BASED PROBLEM SOLVING
+
+Example:
+
+User:
+“My sound is not working”
+
+Show:
+
+1. Open Sound Settings
+2. Open Audio Troubleshooter
+3. Open Device Manager
+4. Search Web
+
+User chooses.
+
+Avoid forcing long troubleshooting trees.
+
+PROJECT LAUNCHER
+
+User:
+
+“Open my Outlook agent project”
+
+Assistant should:
+
+* Find project
+* Open folder
+* Open preferred editor
+* Open terminal in project directory
+
+Support:
+
+* VS Code
+* Cursor
+* User-defined editors
+
+WINGET INTEGRATION
+
+Examples:
+
+* Install Chrome
+* Install Discord
+* Install VS Code
+
+Use official Winget package identifiers.
+
+GENERAL QUESTIONS
+
+For questions outside Windows functionality:
+
+Examples:
+
+* Coding questions
+* Knowledge questions
+* Research questions
+
+Route to:
+
+Preferred Browser
+OR
+Preferred LLM
+
+LLM ROUTING
+
+Supported:
+
+* ChatGPT
+* Claude
+* Gemini
+
+When user asks coding or AI-related questions:
+
+Open preferred LLM.
+
+Pre-fill prompt automatically.
+
+Let user continue there.
+
+DEBUGGING
+
+Create Debug Panel.
+
+Log:
+
+* User query
+* Matched intent
+* Confidence score
+* Action executed
+* Errors
+
+INSTALLATION
+
+Generate Setup.exe
+
+Requirements:
+
+* Double-click install
+* No login
+* No account
+* No cloud setup
+
+SUCCESS METRIC
+
+Users should reach the correct Windows action faster than manually searching Windows Settings, File Explorer, Control Panel, Google, or Start Menu.
+
+V1 PRIORITY
+
+Build:
+
+1. UI
+2. Intent Engine
+3. JSON Database
+4. Action Engine
+5. Metadata Indexer
+6. Voice Input
+7. Browser Routing
+8. LLM Routing
+9. Settings System
+
+Avoid feature creep.
+
+Focus on speed, simplicity, reliability, and local execution.

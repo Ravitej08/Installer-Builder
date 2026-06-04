@@ -1,0 +1,213 @@
+[
+  {
+    "id": "volume_up",
+    "intent": "volume_up",
+    "keywords": ["volume up", "increase volume", "louder", "turn up volume", "raise volume"],
+    "aliases": [],
+    "description": "Increase system volume",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "$obj = New-Object -ComObject WScript.Shell; $obj.SendKeys([char]175); Start-Sleep -m 100; $obj.SendKeys([char]175); Start-Sleep -m 100; $obj.SendKeys([char]175)" }
+    ]
+  },
+  {
+    "id": "volume_down",
+    "intent": "volume_down",
+    "keywords": ["volume down", "decrease volume", "quieter", "turn down volume", "lower volume"],
+    "aliases": [],
+    "description": "Decrease system volume",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "$obj = New-Object -ComObject WScript.Shell; $obj.SendKeys([char]174); Start-Sleep -m 100; $obj.SendKeys([char]174); Start-Sleep -m 100; $obj.SendKeys([char]174)" }
+    ]
+  },
+  {
+    "id": "mute",
+    "intent": "mute_volume",
+    "keywords": ["mute", "silence", "mute audio", "turn off sound", "quiet"],
+    "aliases": [],
+    "description": "Mute system audio",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "$obj = New-Object -ComObject WScript.Shell; $obj.SendKeys([char]173)" }
+    ]
+  },
+  {
+    "id": "unmute",
+    "intent": "unmute_volume",
+    "keywords": ["unmute", "un-mute", "restore sound", "turn on sound", "unmute audio"],
+    "aliases": [],
+    "description": "Unmute system audio",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "$obj = New-Object -ComObject WScript.Shell; $obj.SendKeys([char]173)" }
+    ]
+  },
+  {
+    "id": "brightness_up",
+    "intent": "brightness_up",
+    "keywords": ["brightness up", "increase brightness", "brighter", "screen too dark", "turn up brightness"],
+    "aliases": [],
+    "description": "Increase screen brightness",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,[Math]::Min(100, (Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightness).CurrentBrightness + 20))" }
+    ]
+  },
+  {
+    "id": "brightness_down",
+    "intent": "brightness_down",
+    "keywords": ["brightness down", "decrease brightness", "dimmer", "screen too bright", "turn down brightness", "lower brightness"],
+    "aliases": [],
+    "description": "Decrease screen brightness",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,[Math]::Max(0, (Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightness).CurrentBrightness - 20))" }
+    ]
+  },
+  {
+    "id": "wifi_on",
+    "intent": "enable_wifi",
+    "keywords": ["enable wifi", "turn on wifi", "turn on wi-fi", "connect wifi", "wifi on"],
+    "aliases": [],
+    "description": "Enable Wi-Fi",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Enable-NetAdapter -Name 'Wi-Fi' -Confirm:$false" }
+    ]
+  },
+  {
+    "id": "wifi_off",
+    "intent": "disable_wifi",
+    "keywords": ["disable wifi", "turn off wifi", "disconnect wifi", "wifi off"],
+    "aliases": [],
+    "description": "Disable Wi-Fi",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Disable-NetAdapter -Name 'Wi-Fi' -Confirm:$false" }
+    ]
+  },
+  {
+    "id": "bluetooth_on",
+    "intent": "enable_bluetooth",
+    "keywords": ["enable bluetooth", "turn on bluetooth", "bluetooth on", "start bluetooth"],
+    "aliases": [],
+    "description": "Enable Bluetooth",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Start-Service bthserv; Set-Service bthserv -StartupType Automatic" }
+    ]
+  },
+  {
+    "id": "bluetooth_off",
+    "intent": "disable_bluetooth",
+    "keywords": ["disable bluetooth", "turn off bluetooth", "bluetooth off", "stop bluetooth"],
+    "aliases": [],
+    "description": "Disable Bluetooth",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Stop-Service bthserv" }
+    ]
+  },
+  {
+    "id": "hotspot_on",
+    "intent": "enable_hotspot",
+    "keywords": ["enable hotspot", "turn on hotspot", "start hotspot", "share internet", "hotspot on"],
+    "aliases": [],
+    "description": "Enable Mobile Hotspot",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "uri", "value": "ms-settings:network-mobilehotspot" }
+    ]
+  },
+  {
+    "id": "hotspot_off",
+    "intent": "disable_hotspot",
+    "keywords": ["disable hotspot", "turn off hotspot", "stop hotspot", "hotspot off"],
+    "aliases": [],
+    "description": "Disable Mobile Hotspot",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "uri", "value": "ms-settings:network-mobilehotspot" }
+    ]
+  },
+  {
+    "id": "sleep",
+    "intent": "sleep_pc",
+    "keywords": ["sleep", "put to sleep", "sleep mode", "sleep computer"],
+    "aliases": [],
+    "description": "Put computer to sleep",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false)" }
+    ]
+  },
+  {
+    "id": "lock",
+    "intent": "lock_screen",
+    "keywords": ["lock", "lock screen", "lock computer", "lock pc", "lock workstation"],
+    "aliases": [],
+    "description": "Lock the screen",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "cmd", "value": "rundll32.exe user32.dll,LockWorkStation" }
+    ]
+  },
+  {
+    "id": "shutdown",
+    "intent": "shutdown_pc",
+    "keywords": ["shutdown", "shut down", "power off", "turn off computer", "turn off pc"],
+    "aliases": [],
+    "description": "Shutdown the computer",
+    "options": [
+      { "label": "Shutdown now", "action": { "type": "cmd", "value": "shutdown /s /t 0" } },
+      { "label": "Cancel", "action": { "type": "uri", "value": "" } }
+    ],
+    "actions": [{ "type": "cmd", "value": "shutdown /s /t 0" }]
+  },
+  {
+    "id": "restart",
+    "intent": "restart_pc",
+    "keywords": ["restart", "reboot", "restart computer", "restart windows"],
+    "aliases": [],
+    "description": "Restart the computer",
+    "options": [
+      { "label": "Restart now", "action": { "type": "cmd", "value": "shutdown /r /t 0" } },
+      { "label": "Cancel", "action": { "type": "uri", "value": "" } }
+    ],
+    "actions": [{ "type": "cmd", "value": "shutdown /r /t 0" }]
+  },
+  {
+    "id": "empty_recycle",
+    "intent": "empty_recycle_bin",
+    "keywords": ["empty recycle bin", "clear recycle bin", "recycle bin full"],
+    "aliases": [],
+    "description": "Empty the Recycle Bin",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Clear-RecycleBin -Force" }
+    ]
+  },
+  {
+    "id": "flush_dns",
+    "intent": "flush_dns",
+    "keywords": ["flush dns", "clear dns", "dns cache", "fix dns", "internet slow"],
+    "aliases": [],
+    "description": "Flush DNS Cache",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Clear-DnsClientCache" }
+    ]
+  },
+  {
+    "id": "ip_address",
+    "intent": "show_ip_address",
+    "keywords": ["ip address", "what is my ip", "local ip", "my ip", "network address"],
+    "aliases": [],
+    "description": "Show IP Address",
+    "safeAutoExecute": true,
+    "actions": [
+      { "type": "powershell", "value": "Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.InterfaceAlias -notlike '*Loopback*'} | Select-Object InterfaceAlias, IPAddress | Format-Table; Read-Host 'Press Enter to close'" }
+    ]
+  }
+]

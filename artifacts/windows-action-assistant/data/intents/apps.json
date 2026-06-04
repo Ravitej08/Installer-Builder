@@ -1,0 +1,227 @@
+[
+  {
+    "id": "notepad",
+    "intent": "open_notepad",
+    "keywords": ["notepad", "text editor", "open notepad", "txt file"],
+    "aliases": [],
+    "description": "Open Notepad",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "notepad.exe" }]
+  },
+  {
+    "id": "calculator",
+    "intent": "open_calculator",
+    "keywords": ["calculator", "calc", "math", "open calculator"],
+    "aliases": [],
+    "description": "Open Calculator",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "calc.exe" }]
+  },
+  {
+    "id": "paint",
+    "intent": "open_paint",
+    "keywords": ["paint", "ms paint", "draw", "image editor", "open paint"],
+    "aliases": [],
+    "description": "Open MS Paint",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "mspaint.exe" }]
+  },
+  {
+    "id": "snipping_tool",
+    "intent": "open_snipping_tool",
+    "keywords": ["screenshot", "snipping tool", "screen capture", "snip", "capture screen", "take screenshot"],
+    "aliases": [],
+    "description": "Open Snipping Tool",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "snippingtool.exe" }]
+  },
+  {
+    "id": "file_explorer",
+    "intent": "open_file_explorer",
+    "keywords": ["file explorer", "explorer", "my computer", "files", "open folder", "browse files"],
+    "aliases": [],
+    "description": "Open File Explorer",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "explorer", "value": "" }]
+  },
+  {
+    "id": "cmd",
+    "intent": "open_command_prompt",
+    "keywords": ["command prompt", "cmd", "terminal", "command line", "open cmd", "console"],
+    "aliases": [],
+    "description": "Open Command Prompt",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "cmd.exe" }]
+  },
+  {
+    "id": "powershell",
+    "intent": "open_powershell",
+    "keywords": ["powershell", "open powershell", "ps window", "windows terminal"],
+    "aliases": [],
+    "description": "Open PowerShell",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "powershell.exe" }]
+  },
+  {
+    "id": "windows_terminal",
+    "intent": "open_windows_terminal",
+    "keywords": ["windows terminal", "wt", "terminal app", "new terminal"],
+    "aliases": [],
+    "description": "Open Windows Terminal",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "wt.exe" }]
+  },
+  {
+    "id": "task_manager_app",
+    "intent": "open_task_manager",
+    "keywords": ["task manager", "running processes", "cpu memory", "end task"],
+    "aliases": [],
+    "description": "Open Task Manager",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "taskmgr.exe" }]
+  },
+  {
+    "id": "outlook",
+    "intent": "open_outlook",
+    "keywords": ["outlook", "email", "open outlook", "mail", "inbox"],
+    "aliases": [],
+    "description": "Open Microsoft Outlook",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "outlook.exe" }]
+  },
+  {
+    "id": "word",
+    "intent": "open_word",
+    "keywords": ["word", "microsoft word", "open word", "document", "docx"],
+    "aliases": [],
+    "description": "Open Microsoft Word",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "winword.exe" }]
+  },
+  {
+    "id": "excel",
+    "intent": "open_excel",
+    "keywords": ["excel", "microsoft excel", "spreadsheet", "xlsx", "open excel"],
+    "aliases": [],
+    "description": "Open Microsoft Excel",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "excel.exe" }]
+  },
+  {
+    "id": "chrome",
+    "intent": "open_chrome",
+    "keywords": ["chrome", "google chrome", "open chrome", "browser chrome"],
+    "aliases": [],
+    "description": "Open Google Chrome",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "chrome.exe" }]
+  },
+  {
+    "id": "edge",
+    "intent": "open_edge",
+    "keywords": ["edge", "microsoft edge", "open edge"],
+    "aliases": [],
+    "description": "Open Microsoft Edge",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "msedge.exe" }]
+  },
+  {
+    "id": "firefox",
+    "intent": "open_firefox",
+    "keywords": ["firefox", "mozilla firefox", "open firefox"],
+    "aliases": [],
+    "description": "Open Firefox",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "firefox.exe" }]
+  },
+  {
+    "id": "spotify",
+    "intent": "open_spotify",
+    "keywords": ["spotify", "music", "open spotify", "play music"],
+    "aliases": [],
+    "description": "Open Spotify",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "spotify.exe" }]
+  },
+  {
+    "id": "discord",
+    "intent": "open_discord",
+    "keywords": ["discord", "open discord", "chat discord"],
+    "aliases": [],
+    "description": "Open Discord",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "discord.exe" }]
+  },
+  {
+    "id": "vscode",
+    "intent": "open_vscode",
+    "keywords": ["vscode", "vs code", "visual studio code", "code editor", "open vs code"],
+    "aliases": [],
+    "description": "Open Visual Studio Code",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "code.exe" }]
+  },
+  {
+    "id": "steam",
+    "intent": "open_steam",
+    "keywords": ["steam", "games", "open steam", "gaming"],
+    "aliases": [],
+    "description": "Open Steam",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "steam.exe" }]
+  },
+  {
+    "id": "zoom",
+    "intent": "open_zoom",
+    "keywords": ["zoom", "video call", "zoom meeting", "open zoom"],
+    "aliases": [],
+    "description": "Open Zoom",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "zoom.exe" }]
+  },
+  {
+    "id": "teams",
+    "intent": "open_teams",
+    "keywords": ["teams", "microsoft teams", "open teams", "meeting"],
+    "aliases": [],
+    "description": "Open Microsoft Teams",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "teams.exe" }]
+  },
+  {
+    "id": "obs",
+    "intent": "open_obs",
+    "keywords": ["obs", "obs studio", "streaming", "screen recording", "record screen"],
+    "aliases": [],
+    "description": "Open OBS Studio",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "app", "value": "obs64.exe" }]
+  },
+  {
+    "id": "downloads_folder",
+    "intent": "open_downloads",
+    "keywords": ["downloads", "downloads folder", "open downloads"],
+    "aliases": [],
+    "description": "Open Downloads Folder",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "explorer", "value": "%USERPROFILE%\\Downloads" }]
+  },
+  {
+    "id": "documents_folder",
+    "intent": "open_documents",
+    "keywords": ["documents", "my documents", "open documents folder"],
+    "aliases": [],
+    "description": "Open Documents Folder",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "explorer", "value": "%USERPROFILE%\\Documents" }]
+  },
+  {
+    "id": "desktop_folder",
+    "intent": "open_desktop",
+    "keywords": ["desktop", "open desktop", "show desktop", "desktop folder"],
+    "aliases": [],
+    "description": "Open Desktop Folder",
+    "safeAutoExecute": true,
+    "actions": [{ "type": "explorer", "value": "%USERPROFILE%\\Desktop" }]
+  }
+]

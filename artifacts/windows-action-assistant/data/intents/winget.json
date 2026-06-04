@@ -1,0 +1,162 @@
+[
+  {
+    "id": "install_chrome",
+    "intent": "install_chrome",
+    "keywords": ["install chrome", "download chrome", "get chrome", "install google chrome"],
+    "aliases": [],
+    "description": "Install Google Chrome",
+    "actions": [{ "type": "winget", "value": "Google.Chrome", "label": "Google Chrome" }]
+  },
+  {
+    "id": "install_firefox",
+    "intent": "install_firefox",
+    "keywords": ["install firefox", "download firefox", "get firefox"],
+    "aliases": [],
+    "description": "Install Firefox",
+    "actions": [{ "type": "winget", "value": "Mozilla.Firefox", "label": "Firefox" }]
+  },
+  {
+    "id": "install_vscode",
+    "intent": "install_vscode",
+    "keywords": ["install vscode", "install vs code", "download vs code", "get visual studio code"],
+    "aliases": [],
+    "description": "Install Visual Studio Code",
+    "actions": [{ "type": "winget", "value": "Microsoft.VisualStudioCode", "label": "Visual Studio Code" }]
+  },
+  {
+    "id": "install_cursor",
+    "intent": "install_cursor",
+    "keywords": ["install cursor", "download cursor", "get cursor editor"],
+    "aliases": [],
+    "description": "Install Cursor",
+    "actions": [{ "type": "winget", "value": "Anysphere.Cursor", "label": "Cursor" }]
+  },
+  {
+    "id": "install_discord",
+    "intent": "install_discord",
+    "keywords": ["install discord", "download discord", "get discord"],
+    "aliases": [],
+    "description": "Install Discord",
+    "actions": [{ "type": "winget", "value": "Discord.Discord", "label": "Discord" }]
+  },
+  {
+    "id": "install_spotify",
+    "intent": "install_spotify",
+    "keywords": ["install spotify", "download spotify", "get spotify"],
+    "aliases": [],
+    "description": "Install Spotify",
+    "actions": [{ "type": "winget", "value": "Spotify.Spotify", "label": "Spotify" }]
+  },
+  {
+    "id": "install_zoom",
+    "intent": "install_zoom",
+    "keywords": ["install zoom", "download zoom", "get zoom"],
+    "aliases": [],
+    "description": "Install Zoom",
+    "actions": [{ "type": "winget", "value": "Zoom.Zoom", "label": "Zoom" }]
+  },
+  {
+    "id": "install_vlc",
+    "intent": "install_vlc",
+    "keywords": ["install vlc", "video player", "media player", "download vlc"],
+    "aliases": [],
+    "description": "Install VLC Media Player",
+    "actions": [{ "type": "winget", "value": "VideoLAN.VLC", "label": "VLC Media Player" }]
+  },
+  {
+    "id": "install_7zip",
+    "intent": "install_7zip",
+    "keywords": ["install 7zip", "7-zip", "zip extractor", "file extractor", "unzip"],
+    "aliases": [],
+    "description": "Install 7-Zip",
+    "actions": [{ "type": "winget", "value": "7zip.7zip", "label": "7-Zip" }]
+  },
+  {
+    "id": "install_git",
+    "intent": "install_git",
+    "keywords": ["install git", "download git", "git for windows"],
+    "aliases": [],
+    "description": "Install Git",
+    "actions": [{ "type": "winget", "value": "Git.Git", "label": "Git" }]
+  },
+  {
+    "id": "install_nodejs",
+    "intent": "install_nodejs",
+    "keywords": ["install nodejs", "install node", "node.js", "npm", "download node"],
+    "aliases": [],
+    "description": "Install Node.js",
+    "actions": [{ "type": "winget", "value": "OpenJS.NodeJS.LTS", "label": "Node.js LTS" }]
+  },
+  {
+    "id": "install_python",
+    "intent": "install_python",
+    "keywords": ["install python", "download python", "python 3"],
+    "aliases": [],
+    "description": "Install Python",
+    "actions": [{ "type": "winget", "value": "Python.Python.3.12", "label": "Python 3.12" }]
+  },
+  {
+    "id": "install_steam",
+    "intent": "install_steam",
+    "keywords": ["install steam", "download steam", "get steam", "gaming platform"],
+    "aliases": [],
+    "description": "Install Steam",
+    "actions": [{ "type": "winget", "value": "Valve.Steam", "label": "Steam" }]
+  },
+  {
+    "id": "install_obs",
+    "intent": "install_obs",
+    "keywords": ["install obs", "download obs", "screen recorder", "streaming software"],
+    "aliases": [],
+    "description": "Install OBS Studio",
+    "actions": [{ "type": "winget", "value": "OBSProject.OBSStudio", "label": "OBS Studio" }]
+  },
+  {
+    "id": "install_winrar",
+    "intent": "install_winrar",
+    "keywords": ["install winrar", "download winrar", "rar extractor"],
+    "aliases": [],
+    "description": "Install WinRAR",
+    "actions": [{ "type": "winget", "value": "RARLab.WinRAR", "label": "WinRAR" }]
+  },
+  {
+    "id": "install_powertoys",
+    "intent": "install_powertoys",
+    "keywords": ["install powertoys", "microsoft powertoys", "windows utilities"],
+    "aliases": [],
+    "description": "Install Microsoft PowerToys",
+    "actions": [{ "type": "winget", "value": "Microsoft.PowerToys", "label": "Microsoft PowerToys" }]
+  },
+  {
+    "id": "install_everything",
+    "intent": "install_everything",
+    "keywords": ["install everything", "file search", "fast file search", "voidtools everything"],
+    "aliases": [],
+    "description": "Install Everything (Fast File Search)",
+    "actions": [{ "type": "winget", "value": "voidtools.Everything", "label": "Everything" }]
+  },
+  {
+    "id": "install_brave",
+    "intent": "install_brave",
+    "keywords": ["install brave", "brave browser", "download brave"],
+    "aliases": [],
+    "description": "Install Brave Browser",
+    "actions": [{ "type": "winget", "value": "Brave.Brave", "label": "Brave Browser" }]
+  },
+  {
+    "id": "install_notion",
+    "intent": "install_notion",
+    "keywords": ["install notion", "download notion", "notion app"],
+    "aliases": [],
+    "description": "Install Notion",
+    "actions": [{ "type": "winget", "value": "Notion.Notion", "label": "Notion" }]
+  },
+  {
+    "id": "install_slack",
+    "intent": "install_slack",
+    "keywords": ["install slack", "download slack", "slack app"],
+    "aliases": [],
+    "description": "Install Slack",
+    "actions": [{ "type": "winget", "value": "SlackTechnologies.Slack", "label": "Slack" }]
+  }
+]

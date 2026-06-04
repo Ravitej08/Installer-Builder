@@ -1,0 +1,94 @@
+ENGINEERING RULES
+
+Build this project like a senior Google engineer focused on simplicity.
+
+Requirements:
+
+* Prefer simple solutions over complex solutions.
+* Do not over-engineer.
+* Do not create files, modules, classes, services, abstractions, wrappers, or interfaces unless they are actually needed.
+* Every file must have a clear purpose.
+* Minimize file count.
+* Minimize dependency count.
+* Minimize configuration files.
+* Avoid premature optimization.
+* Avoid enterprise architecture patterns.
+* Avoid microservice-style thinking.
+* Avoid unnecessary design patterns.
+* Avoid creating code for future features that do not exist yet.
+
+Folder Structure Goals:
+
+* Keep total project files as low as reasonably possible.
+* Use a clean, understandable structure.
+* A new developer should understand the entire project within 30 minutes.
+
+Code Style:
+
+* Readability over cleverness.
+* Explicit over abstract.
+* Simple functions.
+* Small modules.
+* Consistent naming.
+* Strong comments only where necessary.
+* No unnecessary comments.
+
+Database Rules:
+
+* JSON files first.
+* Local storage first.
+* Do not introduce SQLite, PostgreSQL, Redis, MongoDB, or cloud databases unless a clear requirement appears.
+
+UI Rules:
+
+* Simple.
+* Fast.
+* Responsive.
+* Minimal visual clutter.
+* Functional before beautiful.
+
+Feature Rules:
+
+When deciding between:
+
+Option A = simple implementation
+Option B = complex implementation
+
+Choose Option A unless Option B provides a significant user benefit.
+
+Architecture Rules:
+
+Only create these major modules:
+
+* UI
+* Intent Engine
+* Action Engine
+* Indexing Engine
+* Settings Engine
+* Data Layer
+
+Do not create additional architecture layers unless absolutely necessary.
+
+Performance Rules:
+
+* Fast startup.
+* Low memory usage.
+* Minimal background processing.
+* Lightweight indexing.
+* No constant rescanning.
+
+Development Rules:
+
+Build the smallest working version first.
+
+Working software is preferred over perfect architecture.
+
+If there are multiple implementation approaches, choose the one with:
+
+* Fewer files
+* Less code
+* Fewer dependencies
+* Easier maintenance
+* Easier debugging
+
+The final codebase should feel like a well-designed utility, not an enterprise software platform.

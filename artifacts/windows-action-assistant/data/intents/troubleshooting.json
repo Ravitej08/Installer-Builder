@@ -1,0 +1,136 @@
+[
+  {
+    "id": "no_sound",
+    "intent": "troubleshoot_sound",
+    "keywords": ["no sound", "sound not working", "audio not working", "no audio", "speakers not working", "headphones not working", "can't hear anything"],
+    "aliases": ["sound issue", "audio problem"],
+    "description": "Fix sound issues",
+    "options": [
+      { "label": "Open Sound Settings", "action": { "type": "uri", "value": "ms-settings:sound" } },
+      { "label": "Run Audio Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id AudioPlaybackDiagnostic" } },
+      { "label": "Open Device Manager", "action": { "type": "cmd", "value": "devmgmt.msc" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows 11 no sound fix" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:sound" }]
+  },
+  {
+    "id": "no_internet",
+    "intent": "troubleshoot_internet",
+    "keywords": ["no internet", "internet not working", "can't connect to internet", "wifi not working", "no connection", "internet down"],
+    "aliases": ["connection problem", "network issue"],
+    "description": "Fix internet connection",
+    "options": [
+      { "label": "Open Network Settings", "action": { "type": "uri", "value": "ms-settings:network-status" } },
+      { "label": "Run Network Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id NetworkDiagnosticsWeb" } },
+      { "label": "Flush DNS Cache", "action": { "type": "powershell", "value": "Clear-DnsClientCache; Write-Host 'DNS cache cleared!' -ForegroundColor Green; Start-Sleep 2" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows internet not working fix" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:network-status" }]
+  },
+  {
+    "id": "slow_computer",
+    "intent": "troubleshoot_slow_pc",
+    "keywords": ["slow computer", "pc is slow", "computer lagging", "slow performance", "computer freezing", "slow startup"],
+    "aliases": ["performance issue"],
+    "description": "Fix slow PC performance",
+    "options": [
+      { "label": "Open Task Manager", "action": { "type": "app", "value": "taskmgr.exe" } },
+      { "label": "Open Startup Apps", "action": { "type": "uri", "value": "ms-settings:startupapps" } },
+      { "label": "Open Storage Settings", "action": { "type": "uri", "value": "ms-settings:storagesense" } },
+      { "label": "Run Performance Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id PerformanceDiagnostic" } }
+    ],
+    "actions": [{ "type": "app", "value": "taskmgr.exe" }]
+  },
+  {
+    "id": "screen_flicker",
+    "intent": "troubleshoot_screen_flicker",
+    "keywords": ["screen flickering", "screen flicker", "monitor flashing", "display flickering"],
+    "aliases": [],
+    "description": "Fix screen flickering",
+    "options": [
+      { "label": "Open Display Settings", "action": { "type": "uri", "value": "ms-settings:display" } },
+      { "label": "Update Display Driver", "action": { "type": "cmd", "value": "devmgmt.msc" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows screen flickering fix" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:display" }]
+  },
+  {
+    "id": "printer_not_working",
+    "intent": "troubleshoot_printer",
+    "keywords": ["printer not working", "can't print", "printer offline", "printer problem", "won't print"],
+    "aliases": [],
+    "description": "Fix printer issues",
+    "options": [
+      { "label": "Open Printer Settings", "action": { "type": "uri", "value": "ms-settings:printers" } },
+      { "label": "Run Printer Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id PrinterDiagnostic" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "printer not working Windows 11" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:printers" }]
+  },
+  {
+    "id": "bluetooth_not_working",
+    "intent": "troubleshoot_bluetooth",
+    "keywords": ["bluetooth not working", "can't connect bluetooth", "bluetooth problem", "bluetooth not pairing", "bluetooth disconnecting"],
+    "aliases": [],
+    "description": "Fix Bluetooth issues",
+    "options": [
+      { "label": "Open Bluetooth Settings", "action": { "type": "uri", "value": "ms-settings:bluetooth" } },
+      { "label": "Run Bluetooth Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id BluetoothDiagnostic" } },
+      { "label": "Restart Bluetooth Service", "action": { "type": "powershell", "value": "Restart-Service bthserv; Write-Host 'Bluetooth service restarted' -ForegroundColor Green; Start-Sleep 2" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:bluetooth" }]
+  },
+  {
+    "id": "windows_update_stuck",
+    "intent": "troubleshoot_windows_update",
+    "keywords": ["update stuck", "windows update stuck", "update not installing", "update failed", "update loop"],
+    "aliases": [],
+    "description": "Fix Windows Update issues",
+    "options": [
+      { "label": "Open Windows Update", "action": { "type": "uri", "value": "ms-settings:windowsupdate" } },
+      { "label": "Run Windows Update Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id WindowsUpdateDiagnostic" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows Update stuck fix" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:windowsupdate" }]
+  },
+  {
+    "id": "high_cpu",
+    "intent": "troubleshoot_high_cpu",
+    "keywords": ["high cpu", "cpu 100%", "cpu usage high", "cpu running hot", "fan spinning fast", "computer hot"],
+    "aliases": [],
+    "description": "Fix high CPU usage",
+    "options": [
+      { "label": "Open Task Manager", "action": { "type": "app", "value": "taskmgr.exe" } },
+      { "label": "Open Power Settings", "action": { "type": "uri", "value": "ms-settings:powersleep" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows high CPU usage fix" } }
+    ],
+    "actions": [{ "type": "app", "value": "taskmgr.exe" }]
+  },
+  {
+    "id": "app_crash",
+    "intent": "troubleshoot_app_crash",
+    "keywords": ["app crashing", "program crashing", "application crash", "keeps crashing", "not responding"],
+    "aliases": [],
+    "description": "Fix app crashing",
+    "options": [
+      { "label": "Open Event Viewer", "action": { "type": "cmd", "value": "eventvwr.msc" } },
+      { "label": "Check Windows Update", "action": { "type": "uri", "value": "ms-settings:windowsupdate" } },
+      { "label": "Run System File Check", "action": { "type": "powershell", "value": "Start-Process powershell -ArgumentList 'sfc /scannow; Read-Host Press Enter to close' -Verb RunAs" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "Windows application keeps crashing fix" } }
+    ],
+    "actions": [{ "type": "cmd", "value": "eventvwr.msc" }]
+  },
+  {
+    "id": "microphone_not_working",
+    "intent": "troubleshoot_microphone",
+    "keywords": ["microphone not working", "mic not working", "mic problem", "can't hear me", "microphone issue", "mic muted"],
+    "aliases": [],
+    "description": "Fix microphone issues",
+    "options": [
+      { "label": "Open Microphone Settings", "action": { "type": "uri", "value": "ms-settings:sound" } },
+      { "label": "Check Microphone Privacy", "action": { "type": "uri", "value": "ms-settings:privacy-microphone" } },
+      { "label": "Run Audio Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id AudioRecordingDiagnostic" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:privacy-microphone" }]
+  }
+]

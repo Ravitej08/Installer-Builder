@@ -1,0 +1,346 @@
+[
+  {
+    "id": "bluetooth",
+    "intent": "bluetooth_settings",
+    "keywords": ["bluetooth", "pair device", "connect headphones", "connect speaker", "bluetooth on", "bluetooth off", "bt"],
+    "aliases": ["bluetooth issue", "bluetooth not working", "can't connect bluetooth"],
+    "description": "Open Bluetooth Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:bluetooth" }],
+    "fallback": "browser"
+  },
+  {
+    "id": "wifi",
+    "intent": "wifi_settings",
+    "keywords": ["wifi", "wi-fi", "wireless", "internet", "network", "connect to wifi", "wifi settings", "no internet"],
+    "aliases": ["wifi not working", "can't connect to internet", "network issues"],
+    "description": "Open Wi-Fi Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:network-wifi" }],
+    "fallback": "browser"
+  },
+  {
+    "id": "display",
+    "intent": "display_settings",
+    "keywords": ["display", "screen", "resolution", "monitor", "refresh rate", "screen size", "scaling", "dpi", "brightness"],
+    "aliases": ["screen settings", "change resolution", "display problem"],
+    "description": "Open Display Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:display" }]
+  },
+  {
+    "id": "sound",
+    "intent": "sound_settings",
+    "keywords": ["sound", "audio", "volume", "speakers", "headphones", "sound settings", "audio settings", "microphone", "mic"],
+    "aliases": ["no sound", "audio not working", "sound problem", "can't hear"],
+    "description": "Open Sound Settings",
+    "options": [
+      { "label": "Open Sound Settings", "action": { "type": "uri", "value": "ms-settings:sound" } },
+      { "label": "Open Audio Troubleshooter", "action": { "type": "powershell", "value": "msdt.exe -id AudioPlaybackDiagnostic" } },
+      { "label": "Open Device Manager", "action": { "type": "uri", "value": "ms-settings:devicemanager" } },
+      { "label": "Search Web", "action": { "type": "browser", "value": "sound not working Windows 11" } }
+    ],
+    "actions": [{ "type": "uri", "value": "ms-settings:sound" }]
+  },
+  {
+    "id": "updates",
+    "intent": "windows_update",
+    "keywords": ["update", "windows update", "check for updates", "install updates", "update windows"],
+    "aliases": ["update settings", "windows updates"],
+    "description": "Open Windows Update",
+    "actions": [{ "type": "uri", "value": "ms-settings:windowsupdate" }]
+  },
+  {
+    "id": "apps",
+    "intent": "apps_settings",
+    "keywords": ["apps", "applications", "installed apps", "uninstall", "programs", "add remove programs"],
+    "aliases": ["manage apps", "remove program"],
+    "description": "Open Apps & Features",
+    "actions": [{ "type": "uri", "value": "ms-settings:appsfeatures" }]
+  },
+  {
+    "id": "startup_apps",
+    "intent": "startup_apps",
+    "keywords": ["startup", "startup apps", "start with windows", "boot apps", "autostart", "startup programs"],
+    "aliases": ["open startup", "manage startup"],
+    "description": "Open Startup Apps",
+    "actions": [{ "type": "uri", "value": "ms-settings:startupapps" }]
+  },
+  {
+    "id": "storage",
+    "intent": "storage_settings",
+    "keywords": ["storage", "disk space", "free up space", "storage sense", "disk usage", "clean up", "low disk"],
+    "aliases": ["check storage", "storage full"],
+    "description": "Open Storage Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:storagesense" }]
+  },
+  {
+    "id": "power",
+    "intent": "power_settings",
+    "keywords": ["power", "battery", "sleep", "hibernate", "power plan", "energy", "power saving", "battery saver"],
+    "aliases": ["power options", "battery settings", "laptop battery"],
+    "description": "Open Power & Battery Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:powersleep" }]
+  },
+  {
+    "id": "hotspot",
+    "intent": "mobile_hotspot",
+    "keywords": ["hotspot", "mobile hotspot", "share wifi", "tethering", "share internet", "personal hotspot"],
+    "aliases": ["turn on hotspot", "enable hotspot"],
+    "description": "Open Mobile Hotspot Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:network-mobilehotspot" }]
+  },
+  {
+    "id": "vpn",
+    "intent": "vpn_settings",
+    "keywords": ["vpn", "virtual private network", "vpn settings", "connect vpn"],
+    "aliases": [],
+    "description": "Open VPN Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:network-vpn" }]
+  },
+  {
+    "id": "proxy",
+    "intent": "proxy_settings",
+    "keywords": ["proxy", "proxy settings", "network proxy"],
+    "aliases": [],
+    "description": "Open Proxy Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:network-proxy" }]
+  },
+  {
+    "id": "date_time",
+    "intent": "date_time_settings",
+    "keywords": ["time", "date", "clock", "timezone", "time zone", "wrong time", "date settings"],
+    "aliases": ["change time", "fix clock", "time wrong"],
+    "description": "Open Date & Time Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:dateandtime" }]
+  },
+  {
+    "id": "language",
+    "intent": "language_settings",
+    "keywords": ["language", "keyboard language", "input language", "locale", "region", "change language"],
+    "aliases": [],
+    "description": "Open Language & Region Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:regionlanguage" }]
+  },
+  {
+    "id": "privacy",
+    "intent": "privacy_settings",
+    "keywords": ["privacy", "permissions", "camera permission", "microphone permission", "location permission", "app permissions"],
+    "aliases": [],
+    "description": "Open Privacy Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:privacy" }]
+  },
+  {
+    "id": "notification",
+    "intent": "notification_settings",
+    "keywords": ["notifications", "notification", "alerts", "do not disturb", "focus", "banner", "toast"],
+    "aliases": ["turn off notifications", "notification settings"],
+    "description": "Open Notification Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:notifications" }]
+  },
+  {
+    "id": "mouse",
+    "intent": "mouse_settings",
+    "keywords": ["mouse", "cursor", "mouse speed", "pointer", "scroll speed", "mouse settings"],
+    "aliases": [],
+    "description": "Open Mouse Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:mousetouchpad" }]
+  },
+  {
+    "id": "touchpad",
+    "intent": "touchpad_settings",
+    "keywords": ["touchpad", "trackpad", "touchpad settings", "touchpad gestures"],
+    "aliases": [],
+    "description": "Open Touchpad Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:devices-touchpad" }]
+  },
+  {
+    "id": "keyboard",
+    "intent": "keyboard_settings",
+    "keywords": ["keyboard", "keyboard settings", "typing", "autocorrect", "text correction"],
+    "aliases": [],
+    "description": "Open Keyboard Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:typing" }]
+  },
+  {
+    "id": "personalization",
+    "intent": "personalization_settings",
+    "keywords": ["wallpaper", "background", "theme", "personalize", "lock screen", "colors", "dark mode", "accent color"],
+    "aliases": ["change background", "change wallpaper", "change theme"],
+    "description": "Open Personalization Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:personalization" }]
+  },
+  {
+    "id": "dark_mode",
+    "intent": "dark_mode",
+    "keywords": ["dark mode", "light mode", "dark theme", "night mode", "switch theme"],
+    "aliases": [],
+    "description": "Open Color & Theme Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:colors" }]
+  },
+  {
+    "id": "accounts",
+    "intent": "accounts_settings",
+    "keywords": ["account", "accounts", "user account", "sign in", "microsoft account", "password", "pin", "login"],
+    "aliases": ["change password", "change pin", "account settings"],
+    "description": "Open Account Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:accounts" }]
+  },
+  {
+    "id": "family",
+    "intent": "family_settings",
+    "keywords": ["family", "parental controls", "child account", "screen time", "family safety"],
+    "aliases": [],
+    "description": "Open Family Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:family-group" }]
+  },
+  {
+    "id": "accessibility",
+    "intent": "accessibility_settings",
+    "keywords": ["accessibility", "narrator", "magnifier", "high contrast", "ease of access", "screen reader", "closed captions"],
+    "aliases": [],
+    "description": "Open Accessibility Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:easeofaccess" }]
+  },
+  {
+    "id": "camera",
+    "intent": "camera_settings",
+    "keywords": ["camera", "webcam", "camera settings", "camera not working"],
+    "aliases": [],
+    "description": "Open Camera Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:camera" }]
+  },
+  {
+    "id": "device_manager",
+    "intent": "device_manager",
+    "keywords": ["device manager", "drivers", "hardware", "update driver", "device not working"],
+    "aliases": ["open device manager"],
+    "description": "Open Device Manager",
+    "actions": [{ "type": "cmd", "value": "devmgmt.msc" }]
+  },
+  {
+    "id": "task_manager",
+    "intent": "task_manager",
+    "keywords": ["task manager", "processes", "cpu usage", "memory usage", "performance", "kill process", "end task", "slow computer"],
+    "aliases": ["open task manager", "ctrl alt delete"],
+    "description": "Open Task Manager",
+    "actions": [{ "type": "cmd", "value": "taskmgr.exe" }]
+  },
+  {
+    "id": "firewall",
+    "intent": "firewall_settings",
+    "keywords": ["firewall", "windows defender", "security", "antivirus", "windows security"],
+    "aliases": [],
+    "description": "Open Windows Security",
+    "actions": [{ "type": "uri", "value": "ms-settings:windowsdefender" }]
+  },
+  {
+    "id": "network_status",
+    "intent": "network_status",
+    "keywords": ["network status", "network settings", "ethernet", "network adapter", "ip address", "connection status"],
+    "aliases": [],
+    "description": "Open Network Status",
+    "actions": [{ "type": "uri", "value": "ms-settings:network-status" }]
+  },
+  {
+    "id": "printing",
+    "intent": "printer_settings",
+    "keywords": ["printer", "print", "printing", "add printer", "printer not working", "scanner"],
+    "aliases": [],
+    "description": "Open Printers & Scanners",
+    "actions": [{ "type": "uri", "value": "ms-settings:printers" }]
+  },
+  {
+    "id": "remote_desktop",
+    "intent": "remote_desktop",
+    "keywords": ["remote desktop", "rdp", "remote access", "teamviewer alternative"],
+    "aliases": [],
+    "description": "Open Remote Desktop Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:remotedesktop" }]
+  },
+  {
+    "id": "default_apps",
+    "intent": "default_apps",
+    "keywords": ["default apps", "default browser", "default email", "set as default", "open with"],
+    "aliases": [],
+    "description": "Open Default Apps Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:defaultapps" }]
+  },
+  {
+    "id": "about",
+    "intent": "about_pc",
+    "keywords": ["about", "about pc", "windows version", "system info", "computer info", "specs", "ram", "processor", "build"],
+    "aliases": [],
+    "description": "Open About This PC",
+    "actions": [{ "type": "uri", "value": "ms-settings:about" }]
+  },
+  {
+    "id": "advanced_startup",
+    "intent": "advanced_startup",
+    "keywords": ["recovery", "reset pc", "advanced startup", "boot options", "safe mode", "reset windows"],
+    "aliases": [],
+    "description": "Open Recovery Settings",
+    "actions": [{ "type": "uri", "value": "ms-settings:recovery" }]
+  },
+  {
+    "id": "control_panel",
+    "intent": "control_panel",
+    "keywords": ["control panel", "classic settings", "old settings"],
+    "aliases": [],
+    "description": "Open Control Panel",
+    "actions": [{ "type": "cmd", "value": "control.exe" }]
+  },
+  {
+    "id": "event_viewer",
+    "intent": "event_viewer",
+    "keywords": ["event viewer", "event logs", "windows logs", "error logs", "system events"],
+    "aliases": [],
+    "description": "Open Event Viewer",
+    "actions": [{ "type": "cmd", "value": "eventvwr.msc" }]
+  },
+  {
+    "id": "services",
+    "intent": "windows_services",
+    "keywords": ["services", "windows services", "background services", "start service", "stop service"],
+    "aliases": [],
+    "description": "Open Services",
+    "actions": [{ "type": "cmd", "value": "services.msc" }]
+  },
+  {
+    "id": "task_scheduler",
+    "intent": "task_scheduler",
+    "keywords": ["task scheduler", "scheduled tasks", "automate task", "cron windows"],
+    "aliases": [],
+    "description": "Open Task Scheduler",
+    "actions": [{ "type": "cmd", "value": "taskschd.msc" }]
+  },
+  {
+    "id": "registry",
+    "intent": "registry_editor",
+    "keywords": ["registry", "regedit", "registry editor"],
+    "aliases": [],
+    "description": "Open Registry Editor",
+    "actions": [{ "type": "cmd", "value": "regedit.exe" }]
+  },
+  {
+    "id": "disk_management",
+    "intent": "disk_management",
+    "keywords": ["disk management", "partition", "format drive", "drive management", "disk"],
+    "aliases": [],
+    "description": "Open Disk Management",
+    "actions": [{ "type": "cmd", "value": "diskmgmt.msc" }]
+  },
+  {
+    "id": "system_properties",
+    "intent": "system_properties",
+    "keywords": ["system properties", "environment variables", "advanced system settings", "virtual memory", "page file"],
+    "aliases": [],
+    "description": "Open System Properties",
+    "actions": [{ "type": "cmd", "value": "sysdm.cpl" }]
+  },
+  {
+    "id": "network_connections",
+    "intent": "network_connections",
+    "keywords": ["network connections", "network adapters", "change adapter settings"],
+    "aliases": [],
+    "description": "Open Network Connections",
+    "actions": [{ "type": "cmd", "value": "ncpa.cpl" }]
+  }
+]
