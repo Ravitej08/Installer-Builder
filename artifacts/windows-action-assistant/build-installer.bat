@@ -31,7 +31,7 @@ if exist "artifacts\windows-action-assistant\package.json" (
 )
 
 echo [1/3] Installing dependencies...
-call pnpm install
+call pnpm install --ignore-scripts
 if %ERRORLEVEL% neq 0 (
     echo ERROR: pnpm install failed
     pause
