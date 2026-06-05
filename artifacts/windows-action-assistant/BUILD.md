@@ -1,105 +1,144 @@
-# Building the Windows Installer
+# Building the Windows Installer (Setup.exe)
 
-This guide explains how to build `Setup.exe` from the source code on a **Windows machine**.
+This is a **native Windows desktop application** built with Electron. The Replit
+preview shows the UI running in a dev server for visual development only — the
+actual product is a standalone `.exe` that runs on any Windows 10/11 PC with no
+browser, no cloud, and no internet connection required.
 
-## Prerequisites
+---
 
-Install the following on your Windows PC:
+## Architecture
 
-1. **Node.js 20+** — https://nodejs.org/
-2. **pnpm** — `npm install -g pnpm`
-3. **Git** — https://git-scm.com/ (if cloning from a repo)
-
-## Step 1 — Clone / Download the project
-
-If you have the project as a ZIP, extract it. Otherwise clone it:
-
-```bash
-git clone <your-repo-url>
-cd <project-folder>
+```
+artifacts/windows-action-assistant/
+├── electron/
+│   ├── main.js          ← Electron main process (Node.js, native OS access)
+│   └── preload.js       ← contextBridge IPC: secure renderer ↔ main bridge
+├── src/                 ← React UI (runs INSIDE Electron renderer)
+│   ├── engine/
+│   │   ├── intentEngine.ts  ← fuzzy NLP matching engine (no external deps)
+│   │   └── actionEngine.ts  ← executes Windows actions via Electron IPC
+│   ├── components/
+│   │   ├── Widget.tsx       ← the floating assistant widget
+│   │   ├── Settings.tsx     ← settings panel
+│   │   ├── FirstRun.tsx     ← first-run wizard
+│   │   └── DebugPanel.tsx   ← action log / debug view
+│   └── hooks/
+│       └── useSettings.ts   ← reads/writes JSON via Electron IPC (or localStorage in dev)
+├── data/intents/        ← intent databases (no server required)
+│   ├── windows-settings.json
+│   ├── system-controls.json
+│   ├── apps.json
+│   ├── winget.json
+│   └── troubleshooting.json
+├── public/
+│   └── icon.png         ← app icon (replace with your own 256×256 PNG)
+├── build-installer.bat  ← ONE-CLICK BUILD SCRIPT for Windows
+└── package.json         ← electron-builder config (NSIS, x64)
 ```
 
-## Step 2 — Install dependencies
+**Data storage:** All settings are written to
+`%APPDATA%\Windows Action Assistant\data\settings\settings.json` via
+`fs.writeFileSync` in Electron's main process — no PostgreSQL, no SQLite, no cloud.
+
+---
+
+## Prerequisites (Windows PC only)
+
+| Tool | Version | Install |
+|------|---------|---------|
+| Node.js | 20+ | https://nodejs.org/ |
+| pnpm | latest | `npm install -g pnpm` |
+
+> **Important:** electron-builder must run on Windows to produce a Windows installer.
+> It cannot cross-compile to `.exe` from Linux/Mac reliably for NSIS targets.
+
+---
+
+## Option A — One-click build (recommended)
+
+Double-click or run from CMD:
+
+```bat
+build-installer.bat
+```
+
+This script (located in `artifacts/windows-action-assistant/`) will:
+1. Check for Node.js + pnpm
+2. Run `pnpm install`
+3. Run `vite build` (compiles React UI → `dist/public/`)
+4. Run `electron-builder --win --x64` (packages Electron + UI → `Setup.exe`)
+
+**Output:**
+```
+artifacts/windows-action-assistant/release/
+└── Windows Action Assistant Setup 1.0.0.exe
+```
+
+---
+
+## Option B — Manual steps
+
+Run from inside `artifacts/windows-action-assistant/`:
 
 ```bash
+# Step 1 — Install dependencies
 pnpm install
-```
 
-## Step 3 — Build the React frontend
-
-Run from the `artifacts/windows-action-assistant` directory:
-
-```bash
-cd artifacts/windows-action-assistant
+# Step 2 — Build the React UI
 pnpm run build
-```
 
-This produces `artifacts/windows-action-assistant/dist/public/` — the compiled web UI.
-
-## Step 4 — Build the Windows installer
-
-Still inside `artifacts/windows-action-assistant`:
-
-```bash
+# Step 3 — Package to Setup.exe
 pnpm run electron:build
 ```
 
-This runs:
-1. `vite build` — builds the frontend
-2. `electron-builder --win --x64` — packages into a NSIS installer
+---
 
-The output is:
+## Option C — Dev mode on Windows (no installer)
 
-```
-artifacts/windows-action-assistant/release/
-└── Windows Action Assistant Setup 1.0.0.exe   ← your installer
-```
-
-## Step 5 — Install on any Windows PC
-
-Copy `Windows Action Assistant Setup 1.0.0.exe` to any Windows 10/11 PC and double-click to install.
-
-- No login, no account, no cloud setup required
-- The app installs to `%LOCALAPPDATA%\Programs\Windows Action Assistant` by default
-- A desktop shortcut and Start Menu entry are created automatically
-- The app runs as a floating widget in the top-center of the screen
-- Right-click the system tray icon to access Settings or quit
-
-## Optional: Add a custom icon
-
-Replace `artifacts/windows-action-assistant/public/icon.ico` with your own 256×256 ICO file before building.
-
-You can convert a PNG to ICO using https://convertio.co/png-ico/ or any image editor.
-
-## Automated Build Script
-
-For CI / scripted builds, save this as `build-installer.bat` in the project root:
-
-```bat
-@echo off
-echo Building Windows Action Assistant...
-cd artifacts\windows-action-assistant
-call pnpm install
-call pnpm run electron:build
-echo.
-echo Build complete!
-echo Installer: artifacts\windows-action-assistant\release\
-pause
-```
-
-## Development Mode (Windows)
-
-To run the app in Electron without building an installer:
+Run both commands in separate terminals from `artifacts/windows-action-assistant/`:
 
 ```bash
-cd artifacts/windows-action-assistant
-pnpm run build
+# Terminal 1: start the Vite dev server
+pnpm run dev
+
+# Terminal 2: launch Electron pointing at localhost:3000
 pnpm run electron:dev
 ```
 
+This opens the real Electron window (frameless, always-on-top) without building an installer.
+
+---
+
+## What the installer does
+
+```
+Windows Action Assistant Setup 1.0.0.exe
+  → Installs to: %LOCALAPPDATA%\Programs\Windows Action Assistant\
+  → Creates:     Desktop shortcut
+                 Start Menu entry
+  → Runs as:     Frameless floating widget (680×80px, always-on-top)
+  → Tray icon:   Right-click → Show / Settings / Quit
+  → Data:        %APPDATA%\Windows Action Assistant\data\settings\settings.json
+  → Uninstall:   Add/Remove Programs → "Windows Action Assistant"
+```
+
+## Replacing the app icon
+
+Replace `public/icon.png` with your own **256×256 PNG** before building.
+electron-builder converts it to `.ico` automatically for Windows.
+
+Free converter: https://convertio.co/png-ico/
+
+---
+
 ## Troubleshooting
 
-- **"electron-builder not found"** — run `pnpm install` again inside `artifacts/windows-action-assistant`
-- **"Cannot find module electron"** — same as above
-- **Antivirus warning on installer** — this is normal for unsigned EXE files. The app is safe.
-- **Icons appear as white squares** — add a valid `public/icon.ico` file
+| Error | Fix |
+|-------|-----|
+| `electron-builder not found` | Run `pnpm install` inside `artifacts/windows-action-assistant` |
+| `Cannot find module 'electron'` | Same — run `pnpm install` |
+| Antivirus flags the EXE | Normal for unsigned apps. The code is open — inspect it yourself. |
+| Icon shows as white square | Use a valid 256×256 PNG in `public/icon.png` |
+| `dist/public not found` | Run `pnpm run build` before `electron-builder` |
+| Build fails on Linux/Mac | Must build on Windows for NSIS `.exe` target |
