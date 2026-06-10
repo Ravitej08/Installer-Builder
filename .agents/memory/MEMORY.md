@@ -1,0 +1,1 @@
+- [Windows Action Assistant](waa-project.md) — Electron + React panda desktop pet; .cjs electron files, panda-icon.png, PandaAssistant.tsx replaces Widget, window resizes dynamically via IPC.

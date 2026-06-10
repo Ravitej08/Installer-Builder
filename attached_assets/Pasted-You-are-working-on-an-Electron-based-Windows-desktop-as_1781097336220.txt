@@ -1,0 +1,122 @@
+You are working on an Electron-based Windows desktop assistant project called "Windows Action Assistant".
+
+Complete BOTH tasks in a single pass:
+
+TASK 1 — Fix Existing Project
+
+* Keep package.json as:
+  "type": "module"
+* Keep:
+
+  * electron/main.cjs
+  * electron/preload.cjs
+* Ensure all Electron references point to .cjs files.
+* Use a Panda-themed application icon.
+* Source icon must be 512x512 minimum.
+* Generate a proper Windows icon.ico from the source image.
+* Use icon.ico for:
+
+  * Application icon
+  * Tray icon
+  * Installer icon
+  * Uninstaller icon
+* Remove all icon.png dependencies.
+
+Git Cleanup:
+
+* Ensure .gitignore contains:
+
+  * node_modules/
+  * dist/
+  * release/
+  * artifacts/windows-action-assistant/release/
+  * *.exe
+  * *.blockmap
+  * gcm-diagnose.log
+* Remove accidentally committed build artifacts.
+* Remove installer outputs from repository tracking.
+* Keep only source code.
+* Prepare repository for successful GitHub push.
+
+TASK 2 — Replace Search Bar With Panda Assistant
+
+Remove the current search-bar-first experience.
+
+Create a modern Desktop Panda Assistant as the primary interface.
+
+Requirements:
+
+* Cute, chubby, modern Panda.
+* High-quality visuals.
+* Not styled like old desktop pets.
+* Draggable.
+* Always available on desktop.
+
+Interaction:
+
+* Single click → opens compact one-line command bubble.
+* Bubble expands vertically as conversation grows.
+* Double click or long press → voice input mode.
+* Uses all existing assistant functionality.
+* No backend architecture changes.
+* No storage changes.
+* No API changes required.
+
+Panda States:
+
+* Idle
+* Walking
+* Sleeping
+* Watching
+* Listening
+* Thinking
+* Executing
+* Success
+* Error
+* Celebration
+
+Behavior:
+
+* React to commands executed through the assistant.
+* React to local PC events.
+* React to app launches.
+* React to battery status.
+* React to coding sessions.
+
+Examples:
+
+* VS Code / Cursor / Antigravity opened:
+  Panda sits quietly at bottom-left and watches.
+* Battery low:
+  Panda moves near battery area.
+* Battery 10%:
+  Panda shows panic/shock animation.
+* Successful task:
+  Panda claps or dances.
+* Error:
+  Panda shows confused animation.
+* User inactive:
+  Panda sleeps.
+
+Action Pack:
+
+* Happy Dance
+* Clapping
+* Sleeping
+* Thinking
+* Stretch/Yawn
+* Confused/Error
+
+Design Rule:
+
+* 70% calm
+* 20% reactive
+* 10% funny
+
+Goal:
+Transform the project from a search-bar utility into a desktop companion that functions both as:
+
+1. The application's primary interface.
+2. A personal desktop assistant that remains useful even when the user is not actively interacting with the application.
+
+Preserve all existing Windows assistant functionality while replacing the UI with the Panda Assistant experience.

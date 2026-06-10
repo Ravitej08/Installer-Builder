@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "zedBM4tVue-js59PEilQb"
+uri = "file://artifacts/windows-action-assistant/public/panda-icon.png"
+type = "image"
+title = "cute panda app icon"

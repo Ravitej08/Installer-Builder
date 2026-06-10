@@ -1,4 +1,6 @@
-const { app, BrowserWindow, ipcMain, shell, Tray, Menu, nativeImage } = require('electron');
+'use strict';
+
+const { app, BrowserWindow, ipcMain, shell, Tray, Menu, nativeImage, powerMonitor } = require('electron');
 const path = require('path');
 const { exec, spawn } = require('child_process');
 const fs = require('fs');
@@ -28,15 +30,26 @@ function writeSettings(data) {
   fs.writeFileSync(SETTINGS_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
+function getIconPath() {
+  const ico = path.join(__dirname, '../public/icon.ico');
+  const png = path.join(__dirname, '../public/panda-icon.png');
+  if (fs.existsSync(ico)) return ico;
+  if (fs.existsSync(png)) return png;
+  return null;
+}
+
 function createWindow() {
   const settings = readSettings();
   const pos = settings?.widgetPosition;
+  const iconPath = getIconPath();
 
   mainWindow = new BrowserWindow({
-    width: 680,
-    height: 80,
-    minWidth: 400,
-    maxWidth: 900,
+    width: 220,
+    height: 220,
+    minWidth: 180,
+    maxWidth: 460,
+    minHeight: 180,
+    maxHeight: 600,
     x: pos && pos.x >= 0 ? pos.x : undefined,
     y: pos && pos.y >= 0 ? pos.y : undefined,
     frame: false,
@@ -44,10 +57,10 @@ function createWindow() {
     alwaysOnTop: true,
     resizable: false,
     skipTaskbar: true,
-    hasShadow: true,
-    vibrancy: 'dark',
+    hasShadow: false,
+    icon: iconPath || undefined,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -59,7 +72,6 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, '../dist/public/index.html'));
   }
 
-  // Save position on move
   mainWindow.on('moved', () => {
     if (!mainWindow) return;
     const [x, y] = mainWindow.getPosition();
@@ -67,33 +79,28 @@ function createWindow() {
     writeSettings({ ...s, widgetPosition: { x, y } });
   });
 
-  // Resize window based on content
-  ipcMain.on('resize-window', (_, height) => {
-    if (!mainWindow) return;
-    mainWindow.setSize(680, Math.min(Math.max(height, 60), 600));
-  });
-
   mainWindow.on('closed', () => { mainWindow = null; });
 }
 
 function createTray() {
-  const iconPath = path.join(__dirname, '../public/icon.png');
-  const icon = fs.existsSync(iconPath)
-    ? nativeImage.createFromPath(iconPath).resize({ width: 16, height: 16 })
-    : nativeImage.createEmpty();
+  const iconPath = getIconPath();
+  let icon;
+  if (iconPath) {
+    try {
+      icon = nativeImage.createFromPath(iconPath).resize({ width: 16, height: 16 });
+    } catch {
+      icon = nativeImage.createEmpty();
+    }
+  } else {
+    icon = nativeImage.createEmpty();
+  }
 
   tray = new Tray(icon);
   tray.setToolTip('Windows Action Assistant');
 
   const menu = Menu.buildFromTemplate([
-    {
-      label: 'Show',
-      click: () => { if (mainWindow) mainWindow.show(); else createWindow(); },
-    },
-    {
-      label: 'Settings',
-      click: () => { if (mainWindow) { mainWindow.show(); mainWindow.webContents.send('navigate', '/settings'); } },
-    },
+    { label: 'Show Panda', click: () => { if (mainWindow) mainWindow.show(); else createWindow(); } },
+    { label: 'Settings', click: () => { if (mainWindow) { mainWindow.show(); mainWindow.webContents.send('navigate', '/settings'); } } },
     { type: 'separator' },
     { label: 'Quit', click: () => app.quit() },
   ]);
@@ -108,7 +115,48 @@ function createTray() {
   });
 }
 
-// IPC Handlers
+function setupBatteryMonitoring() {
+  const sendBattery = () => {
+    exec('powershell.exe -NoProfile -Command "(Get-WmiObject Win32_Battery).EstimatedChargeRemaining"', { timeout: 5000 }, (err, stdout) => {
+      if (!err && mainWindow) {
+        const level = parseInt(stdout.trim(), 10);
+        if (!isNaN(level)) {
+          mainWindow.webContents.send('battery-status', { level, charging: false });
+        }
+      }
+    });
+  };
+
+  powerMonitor.on('on-battery', () => {
+    if (mainWindow) mainWindow.webContents.send('battery-status', { charging: false });
+    sendBattery();
+  });
+
+  powerMonitor.on('on-ac', () => {
+    if (mainWindow) mainWindow.webContents.send('battery-status', { charging: true });
+  });
+
+  setInterval(() => {
+    if (mainWindow) sendBattery();
+  }, 60000);
+}
+
+// ─── IPC HANDLERS ────────────────────────────────────────────────────────────
+
+ipcMain.on('resize-window', (_, w, h) => {
+  if (!mainWindow) return;
+  const [curX, curY] = mainWindow.getPosition();
+  const [curW, curH] = mainWindow.getSize();
+  const newW = Math.min(Math.max(w, 180), 460);
+  const newH = Math.min(Math.max(h, 180), 600);
+  const newX = Math.round(curX - (newW - curW) / 2);
+  const newY = curY - (newH - curH);
+  mainWindow.setBounds({ x: newX, y: Math.max(0, newY), width: newW, height: newH }, true);
+});
+
+ipcMain.on('set-ignore-mouse', (_, ignore) => {
+  if (mainWindow) mainWindow.setIgnoreMouseEvents(ignore, { forward: true });
+});
 
 ipcMain.handle('get-settings', () => readSettings());
 ipcMain.handle('save-settings', (_, data) => { writeSettings(data); return true; });
@@ -150,7 +198,6 @@ ipcMain.handle('launch-app', (_, exe) => {
   return new Promise((resolve) => {
     exec(`start "" "${exe}"`, { shell: true }, (err) => {
       if (err) {
-        // Try direct spawn as fallback
         spawn(exe, [], { detached: true, stdio: 'ignore' }).unref();
       }
       resolve('Done');
@@ -169,11 +216,7 @@ ipcMain.handle('scan-index', () => {
   return new Promise((resolve) => {
     const home = app.getPath('home');
     const results = [];
-    const dirs = [
-      path.join(home, 'Desktop'),
-      path.join(home, 'Documents'),
-      path.join(home, 'Downloads'),
-    ];
+    const dirs = [path.join(home, 'Desktop'), path.join(home, 'Documents'), path.join(home, 'Downloads')];
     for (const dir of dirs) {
       try {
         if (fs.existsSync(dir)) {
@@ -188,17 +231,17 @@ ipcMain.handle('scan-index', () => {
   });
 });
 
+// ─── APP LIFECYCLE ────────────────────────────────────────────────────────────
+
 app.whenReady().then(() => {
   ensureDir(DATA_DIR);
   createWindow();
   createTray();
+  setupBatteryMonitoring();
 });
 
 app.on('window-all-closed', () => {
-  // Keep app running in tray on Windows
-  if (process.platform !== 'darwin') {
-    // Don't quit — keep tray
-  }
+  // Keep running in tray on Windows — don't quit
 });
 
 app.on('activate', () => {
